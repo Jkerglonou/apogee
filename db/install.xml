@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="artefact/apogee/db" VERSION="20110515" COMMENT="XMLDB file for apogee  Mahara tables"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../lib/xmldb/xmldb.xsd"
+>
+<TABLES>
+
+    <!-- This table is supposed to have a 1-1 relation with every row in the
+    artefact table with artefacttype = 'apogee'.  It contains additional data
+    that isn't in the artefact table. -->
+    <TABLE NAME="artefact_apogee_vet">
+        <FIELDS>
+            <FIELD NAME="artefact" TYPE="int" LENGTH="10" SEQUENCE="true" NOTNULL="true" />
+            <FIELD NAME="cod_etu" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="etbt" TYPE="text" NOTNULL="true"  DEFAULT="UBO"/>
+            <FIELD NAME="cod_vet" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="libelle_vet" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="datedelib" TYPE="datetime" NOTNULL="false" />
+            <FIELD NAME="note" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="resultat" TYPE="text" NOTNULL="true" DEFAULT="AJOURNE" />
+            <FIELD NAME="annee" TYPE="text" NOTNULL="false" />
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="artefact" />
+            <KEY NAME="artefactfk" TYPE="foreign" FIELDS="artefact" REFTABLE="artefact" REFFIELDS="id" />
+        </KEYS>
+    </TABLE>
+    <TABLE NAME="apogee_vet_tempo">
+        <FIELDS>
+            <FIELD NAME="username" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="cod_etu" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="etbt" TYPE="text" NOTNULL="true"  DEFAULT="UBO"/>
+            <FIELD NAME="cod_vet" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="libelle_vet" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="datedelib" TYPE="datetime" NOTNULL="false" />
+            <FIELD NAME="note" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="resultat" TYPE="text" NOTNULL="true" DEFAULT="AJOURNE" />
+            <FIELD NAME="annee" TYPE="text" NOTNULL="false" />
+            <FIELD NAME="fait" TYPE="text" NOTNULL="true" DEFAULT="N"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="artefact" />
+            <KEY NAME="username" TYPE="foreign" FIELDS="username" REFTABLE="usr" REFFIELDS="username" />
+        </KEYS>
+    </TABLE>
+</TABLES>
+</XMLDB>
